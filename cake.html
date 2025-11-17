@@ -230,7 +230,8 @@
                 analyser = audioContext.createAnalyser();
                 microphone = audioContext.createMediaStreamSource(audioStream);
                 
-                analyser.fftSize = 256;
+                analyser.fftSize = 2048;
+                analyser.smoothingTimeConstant = 0.8;
                 const bufferLength = analyser.frequencyBinCount;
                 dataArray = new Uint8Array(bufferLength);
                 
@@ -241,24 +242,31 @@
                 blowText.textContent = 'Soplando... (o toque la vela)';
                 blowText.style.color = '#ffd700';
                 
-                // Función para detectar el soplido
+                // Función para detectar el soplido usando time domain (mejor para soplidos)
                 function detectBlow() {
                     if (!isListening || blowDetected) return;
                     
-                    analyser.getByteFrequencyData(dataArray);
+                    analyser.getByteTimeDomainData(dataArray);
                     
-                    // Calcular el volumen promedio
+                    // Calcular el volumen RMS (Root Mean Square) - mejor para detectar soplidos
                     let sum = 0;
                     for (let i = 0; i < dataArray.length; i++) {
-                        sum += dataArray[i];
+                        const normalized = (dataArray[i] - 128) / 128;
+                        sum += normalized * normalized;
                     }
-                    const average = sum / dataArray.length;
+                    const rms = Math.sqrt(sum / dataArray.length);
+                    const volume = rms * 100; // Convertir a porcentaje
                     
-                    // Umbral para detectar soplido (ajustable, más bajo para móviles)
-                    const threshold = 40; // Reducido para móviles
+                    // Umbral más bajo para móviles - soplidos son ondas de baja frecuencia
+                    const threshold = 15; // Muy reducido para detectar mejor
                     
-                    if (average > threshold) {
-                        console.log('Soplido detectado! Volumen:', average);
+                    // Debug en consola (puedes quitar esto después)
+                    if (volume > 5) {
+                        console.log('Volumen detectado:', volume.toFixed(2));
+                    }
+                    
+                    if (volume > threshold) {
+                        console.log('Soplido detectado! Volumen:', volume.toFixed(2));
                         redirectToFlowers();
                     } else {
                         requestAnimationFrame(detectBlow);

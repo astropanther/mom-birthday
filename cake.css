@@ -98,7 +98,7 @@ body {
 
 @keyframes in {
     to {
-        transform: translateY(0);
+        transform: translateX(-50%) translateY(0);
     }
 }
 
@@ -147,13 +147,13 @@ body {
     position: absolute;
     top: 228px;
     left: 50%;
-    margin-left: -40px;
+    transform: translateX(-50%) translateY(-300px);
+    margin-left: 0;
     margin-top: -40px;
     width: 80px;
     height: 100px;
     z-index: 1000;
     cursor: pointer;
-    transform: translateY(-300px);
     animation: in 500ms 6s ease-out forwards;
     /* background: rgba(255, 0, 0, 0.1); /* Descomentar para debug en móviles */
 }
