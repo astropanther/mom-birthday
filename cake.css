@@ -15,6 +15,7 @@ body {
     position: relative;
     margin: -10em auto 0 auto;
     filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+    z-index: 1;
 }
 
 /* ============================================== Candle */
@@ -149,7 +150,7 @@ body {
     left: 50%;
     transform: translateX(-50%) translateY(-300px);
     margin-left: 0;
-    margin-top: -40px;
+    margin-top: 0;
     width: 80px;
     height: 100px;
     z-index: 1000;
@@ -161,14 +162,15 @@ body {
 .velas {
     cursor: pointer;
     transition: transform 0.2s;
-    position: relative;
-    top: 0;
-    left: 0;
-    margin-left: 0;
-    margin-top: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -2.4px;
+    margin-top: -8.33333333px;
+    transform: translate(-50%, -50%);
 }
 
 .velas:hover {
-    transform: scale(1.1);
+    transform: translate(-50%, -50%) scale(1.1);
 }
 
