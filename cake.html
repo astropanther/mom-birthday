@@ -7,14 +7,12 @@
     <link rel="stylesheet" href="cake.css">
 </head>
 <body>
-    <div class="candle-wrapper">
-        <div class="velas">
-            <div class="fuego"></div>
-            <div class="fuego"></div>
-            <div class="fuego"></div>
-            <div class="fuego"></div>
-            <div class="fuego"></div>
-        </div>
+    <div class="velas">
+        <div class="fuego"></div>
+        <div class="fuego"></div>
+        <div class="fuego"></div>
+        <div class="fuego"></div>
+        <div class="fuego"></div>
     </div>
 
     <svg id="cake" version="1.1" x="0px" y="0px" width="200px" height="500px" viewBox="0 0 200 500" enable-background="new 0 0 200 500" xml:space="preserve">
@@ -184,8 +182,6 @@
             sessionStorage.removeItem('fromEnvelope');
         });
         
-        const candleWrapper = document.querySelector('.candle-wrapper');
-        const velas = document.querySelector('.velas');
         const blowText = document.getElementById('blowText');
         let audioContext;
         let analyser;
@@ -239,7 +235,7 @@
                 isListening = true;
                 
                 // Actualizar texto
-                blowText.textContent = 'Soplando... (o toque la vela)';
+                blowText.textContent = 'Soplando... (o toque el texto)';
                 blowText.style.color = '#ffd700';
                 
                 // Función para detectar el soplido usando time domain (mejor para soplidos)
@@ -278,7 +274,7 @@
             } catch (error) {
                 console.error('Error al acceder al micrófono:', error);
                 // Si falla el micrófono, permitir click como alternativa
-                blowText.textContent = 'Toque la vela o el texto para continuar';
+                blowText.textContent = 'Toque el texto para continuar';
                 blowText.style.color = '#ffffff';
                 blowText.style.cursor = 'pointer';
             }

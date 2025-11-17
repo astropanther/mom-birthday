@@ -24,13 +24,15 @@ body {
     background: #ffffff;
     border-radius: 10px;
     position: absolute;
-    top: 50%;
+    top: 228px;
     left: 50%;
     margin-left: -2.4px;
     margin-top: -8.33333333px;
     width: 5px;
     height: 35px;
+    transform: translateY(-300px);
     backface-visibility: hidden;
+    animation: in 500ms 6s ease-out forwards;
 }
 
 .velas:after,
@@ -99,7 +101,7 @@ body {
 
 @keyframes in {
     to {
-        transform: translateX(-50%) translateY(0);
+        transform: translateY(0);
     }
 }
 
@@ -143,21 +145,4 @@ body {
     }
 }
 
-/* Wrapper para la vela */
-.candle-wrapper {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-300px);
-    z-index: 1000;
-    animation: in 500ms 6s ease-out forwards;
-}
-
-.velas {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -2.4px;
-    margin-top: -8.33333333px;
-}
 
