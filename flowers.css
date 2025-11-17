@@ -1376,3 +1376,70 @@ body {
     animation-play-state: paused !important;
 }
 
+/* Signature Text */
+.signature-text {
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    text-align: center;
+    animation: fadeInSignature 2s 1s ease-out backwards;
+}
+
+.signature-text p {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 2.5vmin;
+    color: #ffd700;
+    text-shadow: 
+        0 0 10px rgba(255, 215, 0, 0.8),
+        0 0 20px rgba(255, 215, 0, 0.6),
+        0 0 30px rgba(255, 215, 0, 0.4),
+        0 0 40px rgba(255, 215, 0, 0.2);
+    letter-spacing: 2px;
+    font-style: italic;
+    margin: 0;
+    padding: 15px 30px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    backdrop-filter: blur(5px);
+    animation: textGlow 3s ease-in-out infinite;
+}
+
+@keyframes fadeInSignature {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes textGlow {
+    0%, 100% {
+        text-shadow: 
+            0 0 10px rgba(255, 215, 0, 0.8),
+            0 0 20px rgba(255, 215, 0, 0.6),
+            0 0 30px rgba(255, 215, 0, 0.4),
+            0 0 40px rgba(255, 215, 0, 0.2);
+    }
+    50% {
+        text-shadow: 
+            0 0 15px rgba(255, 215, 0, 1),
+            0 0 30px rgba(255, 215, 0, 0.8),
+            0 0 45px rgba(255, 215, 0, 0.6),
+            0 0 60px rgba(255, 215, 0, 0.4);
+    }
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .signature-text p {
+        font-size: 4vmin;
+        padding: 12px 20px;
+    }
+}
+
