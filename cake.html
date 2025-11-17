@@ -7,12 +7,14 @@
     <link rel="stylesheet" href="cake.css">
 </head>
 <body>
-    <div class="velas">
-        <div class="fuego"></div>
-        <div class="fuego"></div>
-        <div class="fuego"></div>
-        <div class="fuego"></div>
-        <div class="fuego"></div>
+    <div class="candle-wrapper">
+        <div class="velas">
+            <div class="fuego"></div>
+            <div class="fuego"></div>
+            <div class="fuego"></div>
+            <div class="fuego"></div>
+            <div class="fuego"></div>
+        </div>
     </div>
 
     <svg id="cake" version="1.1" x="0px" y="0px" width="200px" height="500px" viewBox="0 0 200 500" enable-background="new 0 0 200 500" xml:space="preserve">
@@ -182,6 +184,7 @@
             sessionStorage.removeItem('fromEnvelope');
         });
         
+        const candleWrapper = document.querySelector('.candle-wrapper');
         const velas = document.querySelector('.velas');
         const blowText = document.getElementById('blowText');
         let audioContext;
@@ -191,6 +194,7 @@
         let dataArray;
         let isListening = false;
         let blowDetected = false;
+        let candleVisible = false;
         
         function redirectToFlowers() {
             if (blowDetected) return; // Evitar múltiples redirecciones
@@ -234,7 +238,7 @@
                 isListening = true;
                 
                 // Actualizar texto
-                blowText.textContent = 'Soplando... (o haga click en la vela)';
+                blowText.textContent = 'Soplando... (o toque la vela)';
                 blowText.style.color = '#ffd700';
                 
                 // Función para detectar el soplido
@@ -250,8 +254,8 @@
                     }
                     const average = sum / dataArray.length;
                     
-                    // Umbral para detectar soplido (ajustable)
-                    const threshold = 50; // Puedes ajustar este valor
+                    // Umbral para detectar soplido (ajustable, más bajo para móviles)
+                    const threshold = 40; // Reducido para móviles
                     
                     if (average > threshold) {
                         console.log('Soplido detectado! Volumen:', average);
@@ -266,21 +270,34 @@
             } catch (error) {
                 console.error('Error al acceder al micrófono:', error);
                 // Si falla el micrófono, permitir click como alternativa
-                blowText.textContent = 'Haga click en la vela para continuar';
+                blowText.textContent = 'Toque la vela o el texto para continuar';
                 blowText.style.color = '#ffffff';
                 blowText.style.cursor = 'pointer';
-                blowText.addEventListener('click', redirectToFlowers);
-                velas.addEventListener('click', redirectToFlowers);
             }
         }
         
-        // Esperar a que aparezca el texto (6.5s) y luego iniciar detección
+        // Hacer clickeable desde el inicio - usar wrapper para área más grande
+        candleWrapper.addEventListener('click', redirectToFlowers);
+        candleWrapper.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            redirectToFlowers();
+        }); // Para móviles
+        velas.addEventListener('click', redirectToFlowers);
+        velas.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            redirectToFlowers();
+        }); // Para móviles
+        blowText.addEventListener('click', redirectToFlowers);
+        blowText.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            redirectToFlowers();
+        }); // Para móviles
+        
+        // Esperar a que aparezca la vela (6.5s) y luego iniciar detección
         setTimeout(() => {
+            candleVisible = true;
             startMicrophoneDetection();
         }, 6500);
-        
-        // También permitir click como alternativa
-        velas.addEventListener('click', redirectToFlowers);
     </script>
 </body>
 </html>

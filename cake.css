@@ -18,19 +18,18 @@ body {
 }
 
 /* ============================================== Candle */
+
 .velas {
     background: #ffffff;
     border-radius: 10px;
     position: absolute;
-    top: 228px;
+    top: 50%;
     left: 50%;
     margin-left: -2.4px;
     margin-top: -8.33333333px;
     width: 5px;
     height: 35px;
-    transform: translateY(-300px);
     backface-visibility: hidden;
-    animation: in 500ms 6s ease-out forwards;
 }
 
 .velas:after,
@@ -143,12 +142,33 @@ body {
     }
 }
 
+/* Wrapper para hacer el área clickeable más grande en móviles */
+.candle-wrapper {
+    position: absolute;
+    top: 228px;
+    left: 50%;
+    margin-left: -40px;
+    margin-top: -40px;
+    width: 80px;
+    height: 100px;
+    z-index: 1000;
+    cursor: pointer;
+    transform: translateY(-300px);
+    animation: in 500ms 6s ease-out forwards;
+    /* background: rgba(255, 0, 0, 0.1); /* Descomentar para debug en móviles */
+}
+
 .velas {
     cursor: pointer;
     transition: transform 0.2s;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-left: 0;
+    margin-top: 0;
 }
 
 .velas:hover {
-    transform: translateY(0) scale(1.1);
+    transform: scale(1.1);
 }
 
