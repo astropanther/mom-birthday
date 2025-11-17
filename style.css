@@ -149,10 +149,10 @@ body {
 #envelope {
     background: white;
     margin: 200px auto;
-    height: 200px;
+    height: 150px;
     position: relative;
-    width: 320px;
-    border-radius: 8px;
+    width: 240px;
+    border-radius: 6px;
     overflow: hidden;
     animation: floaty 1s infinite;
     cursor: pointer;
@@ -176,7 +176,7 @@ body {
 .sides {
     border-color: transparent #fbfbfb #f7f7f7 #fcfcfc;
     border-style: solid;
-    border-width: 90px 170px;
+    border-width: 68px 128px;
     bottom: 0;
     height: 0;
     left: 0;
@@ -188,7 +188,7 @@ body {
 .top {
     border-color: white transparent transparent;
     border-style: solid;
-    border-width: 108px 140px 90px 140px;
+    border-width: 81px 105px 68px 105px;
     height: 0;
     left: 0;
     position: absolute;
