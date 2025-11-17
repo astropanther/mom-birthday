@@ -169,7 +169,7 @@
     <div class="text">
         <h1>Happy Birthday Mamita!!</h1>
         <p>Mami la amo con todo mi corazón y en este lindo día quiero desearle un feliz cumpleaños. En este día hermoso nació la mejor madre #1, la mamá más extraordinaria llena de mucho amor. Gracias por ser una madre amorosa, por cuidarme y por amarme. Querida mami, sé que le he dicho en otras ocasiones pero quiero que sepa que la amo mucho, es la persona más fuerte que conozco, y ha hecho muchos sacrificios por mi y por la familia. Me ha apoyado a poder seguir mis sueños y no hay nadie más en el mundo que crea más en mi y en mi potencial. Dios no me puso de casualidad en su vida, nos conectó de la forma más preciosa y por eso estoy siempre bendecida y agradecida. Gracias mamita!</p>
-        <div class="blow-text" id="blowText">Sople la vela porfis mami</div>
+        <div class="blow-text" id="blowText">Sople la vela por favor mami</div>
     </div>
     
     <script>
@@ -284,17 +284,7 @@
             }
         }
         
-        // Hacer clickeable desde el inicio - usar wrapper para área más grande
-        candleWrapper.addEventListener('click', redirectToFlowers);
-        candleWrapper.addEventListener('touchend', function(e) {
-            e.preventDefault();
-            redirectToFlowers();
-        }); // Para móviles
-        velas.addEventListener('click', redirectToFlowers);
-        velas.addEventListener('touchend', function(e) {
-            e.preventDefault();
-            redirectToFlowers();
-        }); // Para móviles
+        // Solo el texto es clickeable
         blowText.addEventListener('click', redirectToFlowers);
         blowText.addEventListener('touchend', function(e) {
             e.preventDefault();
