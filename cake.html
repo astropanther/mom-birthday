@@ -291,31 +291,9 @@
             redirectToFlowers();
         }); // Para móviles
         
-        // Posicionar la vela sobre el pastel dinámicamente
-        function positionCandle() {
-            const cake = document.getElementById('cake');
-            if (cake) {
-                const cakeRect = cake.getBoundingClientRect();
-                const cakeTop = cakeRect.top + window.scrollY;
-                // La vela debe estar en la parte superior del pastel, donde está el frosting
-                // El frosting está aproximadamente a 100px desde el top del SVG (después de la animación)
-                const candleTop = cakeTop + 100;
-                candleWrapper.style.top = candleTop + 'px';
-            }
-        }
-        
-        // Posicionar cuando la página carga y después de un pequeño delay para que el pastel se renderice
-        window.addEventListener('load', () => {
-            setTimeout(positionCandle, 100);
-        });
-        
-        // También reposicionar en resize
-        window.addEventListener('resize', positionCandle);
-        
         // Esperar a que aparezca la vela (6.5s) y luego iniciar detección
         setTimeout(() => {
             candleVisible = true;
-            positionCandle(); // Reposicionar antes de que aparezca
             startMicrophoneDetection();
         }, 6500);
     </script>
